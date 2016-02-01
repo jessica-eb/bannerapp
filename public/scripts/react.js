@@ -13,6 +13,8 @@ var Lightbox = React.createClass({
 	render: function() {
 		var index = this.props.imgindex;
 		var imgsrc = this.props.metadata[index].imgsrc;
+		var imgdata = this.props.metadata[index];
+		var lightboxval = true;
 		if (this.props.lightbox) {
 			return (
 				<div className="lightbox">
@@ -22,7 +24,7 @@ var Lightbox = React.createClass({
 						</div>
 						<div className="lightbox__image">
 							<img src={ imgsrc } />
-							titleimg
+							<BannerContent onCopyChange={this.props.onCopyChange} lightbox={lightboxval} titletxt={this.props.titletxt} bodytxt={this.props.bodytxt} imgdata={imgdata} />
 						</div>
 						<div onClick={this.getNextImg} className="lightbox__arrow">
 							<img src="images/arrow.png" />
@@ -39,6 +41,51 @@ var Lightbox = React.createClass({
 	}
 });
 
+var BannerContent = React.createClass({
+	getInitialState: function() {
+		return {
+			title: '',
+			body: ''
+		}
+	},
+	componentWillReceiveProps: function() {
+		this.setState({ title: this.props.titletxt });
+		this.setState({ body: this.props.bodytxt })
+	},
+	handleTitleChange: function(e) {
+		this.setState({ title: e.target.value },
+			function() {
+				this.handleCopyChange()
+			}
+		);
+	},
+	handleBodyChange: function(e) {
+		this.setState({ body: e.target.value },
+			function() {
+				this.handleCopyChange()
+			}
+		);
+	},
+	handleCopyChange: function() {
+		this.props.onCopyChange(this.state.title, this.state.body);
+	},
+	render: function() {
+		/* TO DO: make sense of rows */
+		var titlestyle = {};
+		var bodystyle = {};
+		if (this.props.lightbox) {
+			titlestyle = { fontSize: '3vw' };
+			bodystyle = { fontSize: '1vw' };
+		}
+		return (
+			<div> 
+				<textarea rows="3" className="thumb__text thumb__text--title" value={this.props.titletxt} style={this.props.imgdata.titlestyle} onChange={this.handleTitleChange}/>
+				<textarea rows="8" className="thumb__text thumb__text--body" value={this.props.bodytxt} style={this.props.imgdata.bodystyle} onChange={this.handleBodyChange} />
+			</div>
+		)
+	}
+});
+
 var BannerThumb = React.createClass({
 	handleClick: function() {
 		console.log('clicked' + this.props.imgid);
@@ -46,15 +93,11 @@ var BannerThumb = React.createClass({
 	},
 	render: function() {
 		var thumbClick = this.handleClick;
+		var lightboxval = false;
 		return ( 
 			<div onClick={thumbClick} className="thumb"> 
 				<img src={this.props.imgdata.imgsrc} />
-				<div className="thumb__text thumb__text--title" style={this.props.imgdata.titlestyle} >
-					{this.props.titletxt}
-				</div> 
-				<div className="thumb__text thumb__text--body" style={this.props.imgdata.bodystyle} >
-					{this.props.bodytxt}
-				</div> 
+				<BannerContent onCopyChange={this.props.onCopyChange} lightbox={lightboxval} titletxt={this.props.titletxt} bodytxt={this.props.bodytxt} imgdata={this.props.imgdata} />
 			</div>
 		)
 	}
@@ -68,7 +111,7 @@ var BannerCollection = React.createClass({
 		var self = this;
 		var thumbNodes = this.props.metadata.map(function(item, index) {
 			return (
-				<BannerThumb onImgChange={self.handleImgChange} titletxt={self.props.titletxt} bodytxt={self.props.bodytxt} imgid={index} imgdata={item} />
+				<BannerThumb onCopyChange={self.props.onCopyChange} onImgChange={self.handleImgChange} titletxt={self.props.titletxt} bodytxt={self.props.bodytxt} imgid={index} imgdata={item} />
 			)
 		});
 		return (
@@ -87,6 +130,11 @@ var BannerEdit = React.createClass({
 			title: '',
 			body: ''
 		}
+	},
+	componentWillReceiveProps: function() {
+		console.log(this.props.titletxt); 
+		this.setState({ title: this.props.titletxt });
+		this.setState({ body: this.props.bodytxt })
 	},
 	handleTitleChange: function(e) {
 		this.setState({ title: e.target.value },
@@ -112,8 +160,8 @@ var BannerEdit = React.createClass({
 					Edit Copy
 				</div>
 				<form>
-					<input className="edit__item edit__area" placeholder="title" type="text" value={this.state.title} onChange={this.handleTitleChange} /> 
-					<textarea rows="10" className="edit__item edit__area" placeholder="Add some copy to the body" type="text" value={this.state.body} onChange={this.handleBodyChange} /> 
+					<input className="edit__item edit__area" placeholder="title" type="text" value={this.props.titletxt} onChange={this.handleTitleChange} /> 
+					<textarea rows="10" className="edit__item edit__area" placeholder="Add some copy to the body" type="text" value={this.props.body} onChange={this.handleBodyChange} /> 
 				</form>
 			</div>
 		)
@@ -144,10 +192,10 @@ var BannerApp = React.createClass({
 		return (
 			<div>
 				<div className="container">
-					<BannerCollection onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.props.metadata} />
-					<BannerEdit onCopyChange={this.handleCopyChange} />
+					<BannerCollection onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.props.metadata} />
+					<BannerEdit onCopyChange={this.handleCopyChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} />
 				</div>
-				<Lightbox onImgChange={this.handleImgChange} metadata={this.props.metadata} imgindex={this.state.imgindex} onLightboxClose={this.handleLightboxClose} lightbox={this.state.lightbox} />
+				<Lightbox onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.props.metadata} imgindex={this.state.imgindex} onLightboxClose={this.handleLightboxClose} lightbox={this.state.lightbox} />
 			</div>
 		)
 	}

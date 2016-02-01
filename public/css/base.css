@@ -16,6 +16,9 @@ img {
 input, textarea {
   border: none;
   max-width: 100%;
+  background: transparent;
+  outline:none;
+  resize: none;
 }
 
 .container {
@@ -81,8 +84,9 @@ input, textarea {
   box-shadow: 0px 0px 15px #000;
 }
 
+
 .thumb__text {
-  margin: 4%;
+  padding: 4%;
   position: absolute;
   width: auto;
   word-wrap: break-word;
@@ -95,13 +99,15 @@ input, textarea {
 .thumb__text--title {
   -webkit-line-clamp: 2;
   max-height: 20%;
+  font-size: 2vw;
 }
 
 .thumb__text--body {
   -webkit-line-clamp: 5;
   max-height: 30%;
-  font-size: 1%;
+  font-size: 0.5vw;
 }
+
 
 /* ---------------- LIGHTBOX ----------------------- */
 
@@ -158,9 +164,12 @@ input, textarea {
 }
 
 .lightbox__image {
-  max-width: 60vw;
-  max-height: 75vh;
+  max-width: 80vw;
+  max-height: 90vh;
   text-align: center;
+  position: relative;
+  top:0;
+  left:0;
 }
 
 .lightbox__image > img {

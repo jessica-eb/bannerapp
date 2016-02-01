@@ -1,14 +1,15 @@
 var LAZYOBJ = [
 	{
-		imgsrc: "https://farm6.staticflickr.com/5695/23915053475_34b86c3b1f.jpg",
+		imgsrc: "https://farm6.staticflickr.com/5785/23286831104_630c164493.jpg",
 		titlestyle: {
 			top: '0%',
 			left: '0%',
-			width: '100%'
+			width: '100%',
 		},
 		bodystyle: {
 			top: '50%',
-			left: '8%'
+			left: '0%',
+			width: '100%'
 		}
 	},
 	{
@@ -39,7 +40,7 @@ var LAZYOBJ = [
 		}
 	},
 		{
-		imgsrc: "https://farm6.staticflickr.com/5695/23915053475_34b86c3b1f.jpg",
+		imgsrc: "https://farm6.staticflickr.com/5785/23286831104_630c164493.jpg",
 		titlestyle: {
 			top: '8%',
 			left: '8%'
@@ -73,7 +74,7 @@ var LAZYOBJ = [
 		}
 	},
 	{
-		imgsrc: "https://farm6.staticflickr.com/5695/23915053475_34b86c3b1f.jpg",
+		imgsrc: "https://farm6.staticflickr.com/5785/23286831104_630c164493.jpg",
 		titlestyle: {
 			top: '8%',
 			left: '8%'
