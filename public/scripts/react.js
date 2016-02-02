@@ -59,28 +59,28 @@ var BannerContent = React.createClass({
 			}
 		);
 	},
-	handleBodyChange: function(e) {
-		this.setState({ body: e.target.value },
-			function() {
-				this.handleCopyChange()
-			}
-		);
-	},
 	handleCopyChange: function() {
-		this.props.onCopyChange(this.state.title, this.state.body);
+		this.props.onCopyChange(this.state.title);
 	},
 	render: function() {
-		/* TO DO: make sense of rows */
-		var titlestyle = {};
-		var bodystyle = {};
+		var lightboxfont;
+		var logosrc;
 		if (this.props.lightbox) {
-			titlestyle = { fontSize: '3vw' };
-			bodystyle = { fontSize: '1vw' };
+			lightboxfont = { fontSize: '50px' }
+		} else {
+			lightboxfont = { fontSize: '20px' }
 		}
+		
+		logosrc = "/images/eblogo-" + this.props.imgdata.logostyle.color + ".png";
 		return (
-			<div> 
-				<textarea rows="3" className="thumb__text thumb__text--title" value={this.props.titletxt} style={this.props.imgdata.titlestyle} onChange={this.handleTitleChange}/>
-				<textarea rows="8" className="thumb__text thumb__text--body" value={this.props.bodytxt} style={this.props.imgdata.bodystyle} onChange={this.handleBodyChange} />
+			<div style={lightboxfont} > 
+				<div className="thumb__logo" style={this.props.imgdata.logostyle} >
+					<img src={logosrc} />
+				</div>
+				<textarea rows='3' className="thumb__text thumb__text--title" value={this.props.titletxt} style={this.props.imgdata.titlestyle} onChange={this.handleTitleChange}/>
+				<div className="thumb__text thumb__text--body" style={this.props.imgdata.bodystyle}>
+					{this.props.bodytxt}
+				</div>
 			</div>
 		)
 	}
@@ -88,7 +88,6 @@ var BannerContent = React.createClass({
 
 var BannerThumb = React.createClass({
 	handleClick: function() {
-		console.log('clicked' + this.props.imgid);
 		this.props.onImgChange(this.props.imgid);
 	},
 	render: function() {
@@ -128,11 +127,11 @@ var BannerEdit = React.createClass({
 	getInitialState: function() {
 		return {
 			title: '',
-			body: ''
+			body: '',
+			showEdit: "edit"
 		}
 	},
-	componentWillReceiveProps: function() {
-		console.log(this.props.titletxt); 
+	componentDidReceiveProps: function() {
 		this.setState({ title: this.props.titletxt });
 		this.setState({ body: this.props.bodytxt })
 	},
@@ -153,15 +152,22 @@ var BannerEdit = React.createClass({
 	handleCopyChange: function() {
 		this.props.onCopyChange(this.state.title, this.state.body);
 	},
+	handleHide: function() {
+		if (this.state.showEdit === "edit") {
+			this.setState({ showEdit: "edit edit--hide"} );
+		} else {
+			this.setState({ showEdit: "edit" })
+		}
+	},
 	render: function() {
 		return (
-			<div className="edit"> 
-				<div className="edit__item edit__title">
+			<div className={this.state.showEdit} > 
+				<div onClick={this.handleHide} className="edit__item edit__title">
 					Edit Copy
 				</div>
 				<form>
 					<input className="edit__item edit__area" placeholder="title" type="text" value={this.props.titletxt} onChange={this.handleTitleChange} /> 
-					<textarea rows="10" className="edit__item edit__area" placeholder="Add some copy to the body" type="text" value={this.props.body} onChange={this.handleBodyChange} /> 
+					<textarea rows="10" className="edit__item edit__area" placeholder="button text" type="text" value={this.props.bodytxt} onChange={this.handleBodyChange} /> 
 				</form>
 			</div>
 		)
@@ -183,12 +189,15 @@ var BannerApp = React.createClass({
 	},
 	handleCopyChange: function(titletxt, bodytxt) {
 		this.setState({ titletxt: titletxt });
-		this.setState({ bodytxt: bodytxt });
+		if (bodytxt) {
+			this.setState({ bodytxt: bodytxt });
+		}
 	},
 	handleLightboxClose: function() {
 		this.setState({ lightbox: false });
 	},
 	render: function() {
+		console.log("FRONT TOP: " + this.state.bodytxt);
 		return (
 			<div>
 				<div className="container">

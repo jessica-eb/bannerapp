@@ -46,6 +46,11 @@ input, textarea {
   width:40vw;
   height:30vh;
   background-color: #fff;
+  transition: bottom 0.1s linear;
+}
+
+.edit--hide {
+  bottom: calc(-30vh + 40px);
 }
 
 .edit__item {
@@ -58,6 +63,10 @@ input, textarea {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.edit__title:hover {
+  cursor: pointer;
 }
 
 .edit__area {
@@ -86,7 +95,7 @@ input, textarea {
 
 
 .thumb__text {
-  padding: 4%;
+  padding: 1% 2% 1% 2%;
   position: absolute;
   width: auto;
   word-wrap: break-word;
@@ -94,18 +103,32 @@ input, textarea {
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+  font-size: 80%;
 }
 
 .thumb__text--title {
   -webkit-line-clamp: 2;
   max-height: 20%;
-  font-size: 2vw;
 }
 
 .thumb__text--body {
-  -webkit-line-clamp: 5;
-  max-height: 30%;
-  font-size: 0.5vw;
+  -webkit-line-clamp: 1;
+  height: auto;
+  text-align: center;
+  background-color: #00adff;
+  max-width: 30%;
+  font-size: 40%;
+}
+
+.thumb__logo {
+  position: absolute;
+  width: 15%;
+  top:0;
+  left:0;
+}
+
+.thumb__text:empty {
+  padding: 0px;
 }
 
 
