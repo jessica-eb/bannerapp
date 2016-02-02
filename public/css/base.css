@@ -10,7 +10,10 @@ body {
 }
 
 img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width:auto;
+  height:auto;
 }
 
 input, textarea {
@@ -26,7 +29,6 @@ input, textarea {
   width:100vw;
   height:100vh;
   background-color:#fff;
-  padding: 2vh 2vw 2vh 2vw;
 }
 
 .collection {
@@ -40,7 +42,7 @@ input, textarea {
 .edit {
   position: fixed;
   bottom:0;
-  right:20px;
+  right:50px;
   border-radius: 10px 10px 0px 0px;
   box-shadow: 1px 0px 20px #000;
   width:40vw;
@@ -63,6 +65,7 @@ input, textarea {
   color: #fff;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  font-weight: 600;
 }
 
 .edit__title:hover {
@@ -72,11 +75,11 @@ input, textarea {
 .edit__area {
   width:100%;
   min-height:20px;
+  font-size: 1.3em;
 }
 
 .thumb {
-  width: 25vw;
-  height: auto;
+  max-width: 20vw;
   margin: 15px;
   position:relative;
   top:0;
@@ -95,7 +98,6 @@ input, textarea {
 
 
 .thumb__text {
-  padding: 1% 2% 1% 2%;
   position: absolute;
   width: auto;
   word-wrap: break-word;
@@ -103,21 +105,25 @@ input, textarea {
   text-overflow: ellipsis;
   -webkit-box-orient: vertical;
   display: -webkit-box;
-  font-size: 80%;
+  font-size: 100%;
 }
 
 .thumb__text--title {
-  -webkit-line-clamp: 2;
-  max-height: 20%;
+  display: block;
 }
 
 .thumb__text--body {
   -webkit-line-clamp: 1;
+  line-height: 2;
   height: auto;
   text-align: center;
   background-color: #00adff;
   max-width: 30%;
-  font-size: 40%;
+  font-size: 30%;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  padding: 1% 2% 1% 2%;
 }
 
 .thumb__logo {
@@ -125,6 +131,10 @@ input, textarea {
   width: 15%;
   top:0;
   left:0;
+}
+
+.thumb__logo > img {
+  display: block;
 }
 
 .thumb__text:empty {
@@ -193,12 +203,14 @@ input, textarea {
   position: relative;
   top:0;
   left:0;
+  overflow: hidden;
 }
 
 .lightbox__image > img {
   max-width:100%;
   max-height:100%;
   box-shadow: 0px 0px 50px #000;
+  display: block;
 }
 
 .lightbox__close {

@@ -66,9 +66,9 @@ var BannerContent = React.createClass({
 		var lightboxfont;
 		var logosrc;
 		if (this.props.lightbox) {
-			lightboxfont = { fontSize: '50px' }
+			lightboxfont = { fontSize: '40px' }
 		} else {
-			lightboxfont = { fontSize: '20px' }
+			lightboxfont = { fontSize: '10px' }
 		}
 		
 		logosrc = "/images/eblogo-" + this.props.imgdata.logostyle.color + ".png";
@@ -77,7 +77,7 @@ var BannerContent = React.createClass({
 				<div className="thumb__logo" style={this.props.imgdata.logostyle} >
 					<img src={logosrc} />
 				</div>
-				<textarea rows='3' className="thumb__text thumb__text--title" value={this.props.titletxt} style={this.props.imgdata.titlestyle} onChange={this.handleTitleChange}/>
+				<textarea rows={this.props.imgdata.titlerows} className="thumb__text thumb__text--title" value={this.props.titletxt} style={this.props.imgdata.titlestyle} onChange={this.handleTitleChange}/>
 				<div className="thumb__text thumb__text--body" style={this.props.imgdata.bodystyle}>
 					{this.props.bodytxt}
 				</div>
@@ -166,8 +166,8 @@ var BannerEdit = React.createClass({
 					Edit Copy
 				</div>
 				<form>
-					<input className="edit__item edit__area" placeholder="title" type="text" value={this.props.titletxt} onChange={this.handleTitleChange} /> 
-					<textarea rows="10" className="edit__item edit__area" placeholder="button text" type="text" value={this.props.bodytxt} onChange={this.handleBodyChange} /> 
+					<input className="edit__item edit__area" placeholder="edit title text" type="text" value={this.props.titletxt} onChange={this.handleTitleChange} /> 
+					<textarea rows="10" className="edit__item edit__area" placeholder="edit button text" type="text" value={this.props.bodytxt} onChange={this.handleBodyChange} /> 
 				</form>
 			</div>
 		)
@@ -197,7 +197,6 @@ var BannerApp = React.createClass({
 		this.setState({ lightbox: false });
 	},
 	render: function() {
-		console.log("FRONT TOP: " + this.state.bodytxt);
 		return (
 			<div>
 				<div className="container">
