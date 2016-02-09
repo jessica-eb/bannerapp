@@ -45,29 +45,25 @@ input, textarea {
 
 .container {
   position: relative;
-  width:100vw;
+  width:60vw;
   height:100vh;
   background-color:#fff;
+  padding: 20px;
 }
 
 .collection {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-wrap: wrap;
-
+  
 }
 
 .edit {
   position: fixed;
-  bottom:0;
-  right:50px;
-  border-radius: 10px 10px 0px 0px;
-  box-shadow: 1px 0px 20px #000;
-  width:40vw;
-  height:30vh;
-  background-color: #fff;
+  top:0;
+  left: 70vw;
+  width:30vw;
+  height:100vh;
+  background-color: #c3c6cf;
   transition: bottom 0.1s linear;
+  padding: 20px;
 }
 
 .edit--hide {
@@ -75,27 +71,46 @@ input, textarea {
 }
 
 .edit__item {
-  padding: 15px;
+  padding: 20px 0px 20px 0px;
 }
 
 .edit__title {
-  border-radius: 10px 10px 0px 0px;
-  background-color: #00adff;
-  color: #fff;
+  font-size: 0.8em;
+  color: #45494e;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
   font-weight: 600;
 }
 
-.edit__title:hover {
-  cursor: pointer;
+.edit__line {
+  width: 100%;
+  height: 1px;
+  background-color: #363a43;
+  margin: 10px 0px 10px 0px;
+  opacity: 0.5;
 }
 
 .edit__area {
   width:100%;
-  min-height:20px;
-  font-size: 1.3em;
+  font-size: 1em;
   font-weight: 200;
+}
+
+.dim {
+  display: inline-block;
+  padding: 8px 10px 8px 10px;
+  font-size: 0.5em;
+  border-radius: 20px;
+  margin: 5px 10px 5px 0px;
+}
+
+.dim:hover {
+  cursor: pointer;
+}
+
+.dim--active {
+  background-color: #363a43;
+  color: #fff;
 }
 
 .thumb {
@@ -114,6 +129,27 @@ input, textarea {
 .thumb:hover {
   cursor: pointer;
   box-shadow: 0px 0px 15px #000;
+}
+
+.thumb__divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0px 20px 0px;
+}
+ 
+.thumb__title {
+  font-size: 1.5em;
+  font-weight: 200;
+  color: #c3c6cf;
+}
+
+.thumb__line {
+  height: 1px;
+  width: 100%;
+  background-color: #c3c6cf;
+  margin-left: 10px;
 }
 
 
@@ -160,6 +196,7 @@ input, textarea {
 .thumb__text:empty {
   padding: 0px;
 }
+
 
 
 /* ---------------- LIGHTBOX ----------------------- */

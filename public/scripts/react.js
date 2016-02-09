@@ -93,10 +93,26 @@ var BannerThumb = React.createClass({
 	render: function() {
 		var thumbClick = this.handleClick;
 		var lightboxval = false;
+		var activeStyle = {};
+		if (!this.props.imgdata.show) {
+			activeStyle = {
+				display: 'none'
+			}
+		}
 		return ( 
-			<div onClick={thumbClick} className="thumb"> 
-				<img src={this.props.imgdata.imgsrc} />
-				<BannerContent onCopyChange={this.props.onCopyChange} lightbox={lightboxval} titletxt={this.props.titletxt} bodytxt={this.props.bodytxt} imgdata={this.props.imgdata} />
+			<div style={activeStyle}>
+				<div className="thumb__divider">
+					<div className="thumb__title">
+						{this.props.imgdata.name}
+					</div>
+					<div className="thumb__line">
+					</div>
+				</div>
+				<div onClick={thumbClick} className="thumb"> 
+
+					<img src={this.props.imgdata.imgsrc} />
+					<BannerContent onCopyChange={this.props.onCopyChange} lightbox={lightboxval} titletxt={this.props.titletxt} bodytxt={this.props.bodytxt} imgdata={this.props.imgdata} />
+				</div>
 			</div>
 		)
 	}
@@ -121,7 +137,27 @@ var BannerCollection = React.createClass({
 	}
 });
 
-
+var DimField = React.createClass({
+	handleClick: function() {
+		this.props.onDimClick(this.props.dimIndex);
+	},
+	render: function() {
+		var triggerClick = this.handleClick;
+		if (this.props.active) {
+			return (
+				<div onClick={triggerClick} className="dim dim--active">
+					{ this.props.dimName }
+				</div>
+			)
+		} else {
+			return (
+				<div onClick={triggerClick} className="dim">
+					{ this.props.dimName }
+				</div>
+			)
+		}
+	}
+})
 
 var BannerEdit = React.createClass({
 	getInitialState: function() {
@@ -160,15 +196,27 @@ var BannerEdit = React.createClass({
 		}
 	},
 	render: function() {
+		var self = this;
+		var dimNodes = this.props.metadata.map(function(item, index) {
+			return (
+				<DimField onDimClick={self.props.onDimClick} dimName={item.name} active={item.show} dimIndex = {index} />
+			)
+		});
 		return (
 			<div className={this.state.showEdit} > 
 				<div onClick={this.handleHide} className="edit__item edit__title">
 					Edit Copy
 				</div>
+				<div className="edit__line">
+				</div>
 				<form>
 					<input className="edit__item edit__area" placeholder="edit title text" type="text" value={this.props.titletxt} onChange={this.handleTitleChange} /> 
-					<textarea rows="10" className="edit__item edit__area" placeholder="edit button text" type="text" value={this.props.bodytxt} onChange={this.handleBodyChange} /> 
+					<input className="edit__item edit__area" placeholder="edit button text" type="text" value={this.props.bodytxt} onChange={this.handleBodyChange} /> 
+					<input className="edit__item edit__area" placeholder="image source" type="text" />
 				</form>
+				<div className="edit__dims">
+					{ dimNodes }
+				</div>
 			</div>
 		)
 	}
@@ -180,7 +228,8 @@ var BannerApp = React.createClass({
 			titletxt: '',
 			bodytxt: '',
 			imgindex: 0,
-			lightbox: false
+			lightbox: false,
+			metadata: this.props.metadata
 		}
 	},
 	handleImgChange: function(imgindex) {
@@ -196,14 +245,20 @@ var BannerApp = React.createClass({
 	handleLightboxClose: function() {
 		this.setState({ lightbox: false });
 	},
+	handleDimClick: function(dimIndex) {
+		var meta = this.state.metadata;
+		var show = meta[dimIndex].show;
+		meta[dimIndex].show = !show;
+		this.setState({	metadata: meta });
+	},
 	render: function() {
 		return (
 			<div>
 				<div className="container">
-					<BannerCollection onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.props.metadata} />
-					<BannerEdit onCopyChange={this.handleCopyChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} />
+					<BannerCollection onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.state.metadata} />
+					<BannerEdit onDimClick={this.handleDimClick} onCopyChange={this.handleCopyChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.state.metadata} />
 				</div>
-				<Lightbox onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.props.metadata} imgindex={this.state.imgindex} onLightboxClose={this.handleLightboxClose} lightbox={this.state.lightbox} />
+				<Lightbox onCopyChange={this.handleCopyChange} onImgChange={this.handleImgChange} titletxt={this.state.titletxt} bodytxt={this.state.bodytxt} metadata={this.state.metadata} imgindex={this.state.imgindex} onLightboxClose={this.handleLightboxClose} lightbox={this.state.lightbox} />
 			</div>
 		)
 	}

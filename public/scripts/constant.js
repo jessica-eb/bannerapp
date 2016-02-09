@@ -1,6 +1,8 @@
 var LAZYOBJ = [
 	{
 		imgsrc: "/images/banners/banner01.png",
+		name: "728x90",
+		show: false,
 		logostyle: {
 			top: '50%',
 			left: '4%',
@@ -28,6 +30,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner02.png",
+		name: "469x60",
+		show: false,
 		logostyle: {
 			top: '50%',
 			left: '4%',
@@ -55,6 +59,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner03.png",
+		name: "300x250",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -77,6 +83,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner04.png",
+		name: "180x150",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -100,6 +108,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner05.png",
+		name: "300x600",
+		show: true,
 		logostyle: {
 			top: '50%',
 			left: '4%',
@@ -127,6 +137,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner06.png",
+		name: "160x600",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -149,6 +161,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner07.png",
+		name: "Facebook",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -171,6 +185,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner08.png",
+		name: "Twitter",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -194,6 +210,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner09.png",
+		name: "LinkedIn",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '4%',
@@ -215,6 +233,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner10.png",
+		name: "Mobile",
+		show: true,
 		logostyle: {
 			top: '50%',
 			left: '50%',
@@ -229,9 +249,12 @@ var LAZYOBJ = [
 		bodystyle: {
 			display: 'none'
 		}
-	},
-	{
+	}
+]
+	/*{
 		imgsrc: "/images/banners/banner11.png",
+		name: "100x200",
+		show: true,
 		logostyle: {
 			top: '50%',
 			left: '4%',
@@ -260,6 +283,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner12.png",
+		name: "100x200",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -283,6 +308,8 @@ var LAZYOBJ = [
 	},
 	{
 		imgsrc: "/images/banners/banner13.png",
+		name: "100x200",
+		show: true,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -306,4 +333,4 @@ var LAZYOBJ = [
 		}
 	}
 	
-]
+]*/
