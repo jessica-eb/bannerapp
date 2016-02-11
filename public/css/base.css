@@ -70,9 +70,85 @@ input, textarea {
   bottom: calc(-30vh + 40px);
 }
 
+.edit__logo {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+  width: 80%;
+}
+
+.edit__logo__item {
+  width: 43%;
+  margin: 20px 0px 20px 0px;
+  padding: 15px;
+  border-radius: 10px;
+  transition: 0.05s background-color linear;
+}
+
+.edit__logo__item:hover {
+  cursor: pointer;
+}
+
+.edit__logo__item--active {
+  background-color: #d2d6df;
+}
+
 .edit__item {
-  padding: 10px 0px 30px 0px;
+  padding: 10px 0px 10px 0px;
   color: #6d717a;
+}
+
+.edit__item__title {
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 0.6em;
+}
+
+.edit__color {
+  display: inline-block;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #edeff5;
+}
+
+.edit__color__item {
+  width: 40px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.edit__color__item:hover {
+  cursor: pointer;
+}
+
+.color--light {
+  background-color: #f8faff;
+}
+
+.color--dark {
+  background-color: #282c35;
+}
+
+.color--blue {
+  background-color: #00fff8;
+}
+
+.color--green {
+  background-color: #6aedc7;
+}
+
+.color--pink {
+  background-color: #ff1ab3;
+}
+
+.color--oj {
+  background-color: #f6682f
+}
+
+.edit__flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .edit__export {
@@ -107,7 +183,7 @@ input, textarea {
   width: 100%;
   height: 1px;
   background-color: #363a43;
-  margin: 10px 0px 35px 0px;
+  margin: 10px 0px 20px 0px;
   opacity: 0.5;
 }
 
@@ -115,10 +191,11 @@ input, textarea {
   width:100%;
   font-size: 1em;
   font-weight: 200;
+  margin-top: 5px;
 }
 
 .edit__gradient {
-  width:45%;
+  width:60%;
   display:flex;
   justify-content: space-between;
   margin: 20px 0px 20px 0px;
@@ -221,6 +298,12 @@ input, textarea {
   margin-left: 10px;
 }
 
+.thumb__content {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
 
 .thumb__text {
   position: absolute;
@@ -281,6 +364,33 @@ input, textarea {
   width:auto;
 }
 
+.adj {
+  opacity: 0;
+  transition: 0.05s linear opacity;
+}
+
+.thumb__content:hover .adj {
+  opacity: 1;
+}
+
+.adj__item {
+  border: 1px solid #d2d6df;
+  border-radius:100%;
+  text-align: center;
+  margin: 5px 0px 5px 0px;
+  width: 25px;
+  height: 25px;
+}
+
+.adj__item {
+  cursor: pointer;
+}
+
+.adj__item--rainbow {
+  background-color:#d2d6df;
+  border: #d2d6df;
+  -webkit-filter: grayscale(100%);
+}
 
 /* ---------------- LIGHTBOX ----------------------- */
 

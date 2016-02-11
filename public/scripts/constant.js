@@ -1,8 +1,48 @@
+var BUTTON_COLORS = [
+	{
+		name: 'light',
+		style: {
+			backgroundColor: "#f8faff",
+			color: "#282c35"
+		}
+	},
+	{
+		name: 'green',
+		style: {
+			backgroundColor: "#6aedc7",
+			color: "#f8faff"
+		}
+	},
+	{
+		name: 'blue',
+		style: {
+			backgroundColor: "#00fff8",
+			color: "#f8faff"
+		}
+	},
+	{
+		name: 'pink',
+		style: {
+			backgroundColor: "#ff1ab3",
+			color: "#f8faff"
+		}
+	},
+	{
+		name: 'oj',
+		style: {
+			backgroundColor: "#f6682f",
+			color: "#f8faff"
+		}
+	}
+];
+
 var LAZYOBJ = [
 	{
 		imgsrc: "/images/banners/728x90.png",
 		name: "728x90",
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		thumbstyle: {
 			width: '728px',
 			height: '90px'
@@ -11,7 +51,7 @@ var LAZYOBJ = [
 			top: '50%',
 			left: '4%',
 			width: '10%',
-			color: 'pink',
+			color: 'white',
 			transform: 'translateY(-50%)',
 		},
 		titlerows: '1',
@@ -24,6 +64,9 @@ var LAZYOBJ = [
 			fontSize: '20px',
 			maxWidth: '40%',
 			transform: 'translateY(-50%) translateX(-50%)',
+		},
+		substyle: {
+			display: 'none'
 		},
 		bodystyle: {
 			top: '50%',
@@ -38,6 +81,8 @@ var LAZYOBJ = [
 		imgsrc: "/images/banners/468x60.png",
 		name: "469x60",
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		thumbstyle: {
 			width: '468px',
 			height: '60px'
@@ -48,6 +93,9 @@ var LAZYOBJ = [
 			width: '18%',
 			color: 'white',
 			transform: 'translateY(-50%)',
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows: '1',
 		titlestyle: {
@@ -78,11 +126,16 @@ var LAZYOBJ = [
 			height: '250px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '10%',
 			color: 'white',
 			width: '30%',
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows: '3',
 		titlestyle: {
@@ -108,11 +161,16 @@ var LAZYOBJ = [
 			height: '150px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '10%',
 			width: '30%',
 			color: 'white'
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows:'5',
 		titlestyle: {
@@ -136,7 +194,12 @@ var LAZYOBJ = [
 			width: '300px',
 			height: '600px'
 		},
+		substyle: {
+			display: 'none'
+		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '10%',
@@ -167,11 +230,16 @@ var LAZYOBJ = [
 			height: '600px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '10%',
 			color: 'white',
 			width: '60%',
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows: '4',
 		titlestyle: {
@@ -198,11 +266,18 @@ var LAZYOBJ = [
 			height: '314px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '8%',
 			width: '30%',
 			color: 'white'
+		},
+		substyle: {
+			top: '50%',
+			left: '8%',
+			color: '#fff'
 		},
 		titlerows:'3',
 		titlestyle: {
@@ -227,7 +302,12 @@ var LAZYOBJ = [
 			width: '719px',
 			height: '362.5px'
 		},
+		substyle: {
+			display: 'none'
+		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '28%',
 			left: '25%',
@@ -258,11 +338,16 @@ var LAZYOBJ = [
 			height: '320px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '10%',
 			left: '4%',
 			width: '15%',
 			color: 'white'
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows: '3',
 		titlestyle: {
@@ -286,12 +371,17 @@ var LAZYOBJ = [
 			height: '50px'
 		},
 		show: true,
+		imgGrad: false,
+		imgScale: 1,
 		logostyle: {
 			top: '50%',
 			left: '5%',
 			width: '20%',
 			transform: 'translateY(-50%)',
 			color: 'white'
+		},
+		substyle: {
+			display: 'none'
 		},
 		titlerows: '1',
 		titlestyle: {
